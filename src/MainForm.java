@@ -14,7 +14,7 @@ public class MainForm extends JFrame {
     private JTabbedPane tabbedPane1;
     private JButton button1;
     private JButton getImageButton;
-    private JButton entURLButton;
+    private JButton getFileButton;
     private JTextArea enterUrlTextArea;
     private JComboBox comboBox1;
     private JPanel JPanel2;
@@ -46,6 +46,18 @@ public class MainForm extends JFrame {
                 imagelable.updateUI();
             }
         });
+
+
+        getFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser chooser=new JFileChooser();
+                int reply = chooser.showOpenDialog(null);
+                System.out.println(reply);
+                if (reply == JFileChooser.APPROVE_OPTION){
+                    Main.setImage(chooser.getSelectedFile());
+                }}
+        });
     }
 
 
@@ -61,11 +73,30 @@ public class MainForm extends JFrame {
         menuBar.add(File);
         menuBar.add(Option);
 
+        JComboBox comboBox1=new JComboBox();
         JMenuItem sImage = new JMenuItem("Save Image");
         File.add(sImage);
+        sImage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser chooser=new JFileChooser();
+                int reply = chooser.showSaveDialog(null);
+                if (reply==JFileChooser.APPROVE_OPTION){
+                    Main.saveImage(chooser.getSelectedFile(), "png");
+                    System.out.println(comboBox1.getSelectedItem());
+                }
+
+            }
+        });
 
         JMenuItem opt = new JMenuItem("Exit");
         Option.add(opt);
+        opt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
         menuBar.setVisible(true);
 
@@ -80,4 +111,5 @@ public class MainForm extends JFrame {
 
 
 
-    }
+}
+
