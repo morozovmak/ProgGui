@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact name="ProgGui:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProgGui_jar</output-path>
+    <root id="root">
+      <element id="module-output" name="ProgGui" />
+    </root>
+  </artifact>
+</component>
